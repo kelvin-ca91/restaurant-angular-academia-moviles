@@ -1,0 +1,44 @@
+<div class="content">
+  <div class="content-login">
+    <nz-spin [nzSpinning]="loading">
+      <form [formGroup]="formLogin" (submit)="login(formLogin.value)">
+        <h1>Login</h1>
+        <div class="form-group">
+          <label for="">Username</label>
+          <input nz-input formControlName="username" />
+        </div>
+        <div class="form-group">
+          <label for="">Password</label>
+          <div>
+            <nz-input-group [nzSuffix]="suffixTemplate">
+              <input
+                [type]="passwordVisible ? 'text' : 'password'"
+                nz-input
+                formControlName="password"
+              />
+            </nz-input-group>
+            <ng-template #suffixTemplate>
+              <i
+                nz-icon
+                [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+                (click)="passwordVisible = !passwordVisible"
+              ></i>
+            </ng-template>
+          </div>
+        </div>
+
+        <div class="content-buttons">
+          <button
+            [disabled]="formLogin.invalid"
+            nz-button
+            nzType="primary"
+            nzSize="large"
+            nzShape="round"
+          >
+            <i nz-icon nzType="login" nzTheme="outline"></i>Ingresar
+          </button>
+        </div>
+      </form>
+    </nz-spin>
+  </div>
+</div>

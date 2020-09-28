@@ -1,0 +1,102 @@
+<nz-spin [nzSpinning]="loading">
+  <form
+    [formGroup]="formDishes"
+    *ngIf="formDishes"
+    (ngSubmit)="validateForm(formDishes.value)"
+  >
+    <h1 *ngIf="!loading">{{ dish?._id ? "Actualizar" : "Registrar" }} Plato</h1>
+    <div class="row">
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label for="category">Categoría</label>
+          <nz-select
+            class="form-control"
+            nzShowSearch
+            nzPlaceHolder="Seleccionar Categoria"
+            formControlName="category_id"
+          >
+            <nz-option
+              *ngFor="let item of listCategories"
+              [nzLabel]="item.name"
+              [nzValue]="item._id"
+            ></nz-option>
+          </nz-select>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input
+            formControlName="name"
+            type="text"
+            name="name"
+            id="name"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-12 col-md-4">
+        <div class="form-group">
+          <label for="price">Precio</label>
+          <input
+            formControlName="price"
+            type="number"
+            name="price"
+            id="price"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-12">
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea
+            nz-input
+            formControlName="description"
+            name="description"
+            id="description"
+            class="form-control"
+            [nzAutosize]="{ minRows: 3, maxRows: 6 }"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="col-12 col-md-6">
+        <nz-upload
+          nzType="drag"
+          [nzShowUploadList]="false"
+          [nzBeforeUpload]="beforeUpload"
+          nzFileType="image/png,image/jpeg"
+          [nzSize]="300"
+        >
+          <p class="ant-upload-drag-icon">
+            <i nz-icon nzType="inbox"></i>
+          </p>
+          <p class="ant-upload-text">
+            Selecciona o arrastra una imagen en esta area
+          </p>
+          <p class="ant-upload-hint">
+            Solo soporta subidas de imagenes JPG / PNG con archivos de 300kb
+            como máximo
+          </p>
+        </nz-upload>
+      </div>
+      <div class="col-12 col-md-6">
+        <img class="avatar" [src]="imgURL" alt="" />
+      </div>
+
+      <div class="col-12">
+        <button
+          type="submit"
+          [disabled]="formDishes.invalid"
+          class="btn btn-success btn-block mt-5"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</nz-spin>

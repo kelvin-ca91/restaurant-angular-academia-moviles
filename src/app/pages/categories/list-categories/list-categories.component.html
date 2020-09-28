@@ -1,0 +1,41 @@
+<nz-spin [nzSpinning]="loading">
+  <h1>Lista de Categorias</h1>
+  <nz-list nzGrid>
+    <div nz-row [nzGutter]="16">
+      <div
+        nz-col
+        [nzXXl]="6"
+        [nzXl]="6"
+        [nzLg]="6"
+        [nzMd]="6"
+        [nzSm]="12"
+        [nzXs]="24"
+        *ngFor="let item of listCategories"
+      >
+        <nz-list-item>
+          <nz-card
+            nzHoverable
+            [nzTitle]="item.name"
+            [nzActions]="[actionSetting, actionEdit]"
+          >
+            <div>
+              {{ item.description }}
+            </div>
+          </nz-card>
+          <ng-template #actionSetting>
+            <a
+              nz-popconfirm
+              nzPopconfirmTitle="¿Está seguro de eliminar?"
+              (nzOnConfirm)="deleteCategory(item._id)"
+            >
+              Eliminar
+            </a>
+          </ng-template>
+          <ng-template #actionEdit>
+            <a [routerLink]="['/categories', item._id, 'edit']">Editar</a>
+          </ng-template>
+        </nz-list-item>
+      </div>
+    </div>
+  </nz-list>
+</nz-spin>

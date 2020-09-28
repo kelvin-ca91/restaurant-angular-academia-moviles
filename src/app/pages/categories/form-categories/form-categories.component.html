@@ -1,0 +1,43 @@
+<nz-spin [nzSpinning]="loading">
+  <form
+    *ngIf="formCategoria"
+    [formGroup]="formCategoria"
+    (ngSubmit)="validForm(formCategoria.value)"
+  >
+    <h1 *ngIf="!loading">
+      {{ category?._id ? "Actualizar" : "Registrar" }} Categoría
+    </h1>
+    <div class="row">
+      <div class="col-12">
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input
+            nz-input
+            id="name"
+            formControlName="name"
+            class="form-control"
+          />
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <textarea
+            nz-input
+            class="form-control"
+            formControlName="description"
+            [nzAutosize]="{ minRows: 3, maxRows: 8 }"
+          ></textarea>
+        </div>
+      </div>
+      <div class="col-12">
+        <button
+          class="btn-success btn btn-block"
+          [disabled]="formCategoria.invalid"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</nz-spin>

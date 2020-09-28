@@ -1,0 +1,13 @@
+<nz-spin [nzSpinning]="loading">
+  <div style="display: block" *ngIf="!loading">
+    <canvas
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [chartType]="barChartType"
+    >
+    </canvas>
+  </div>
+</nz-spin>

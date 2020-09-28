@@ -1,0 +1,42 @@
+<nz-layout class="layout">
+  <nz-sider nzCollapsible nzBreakpoint="lg" [nzCollapsedWidth]="0">
+    <div class="logo"></div>
+    <ul nz-menu nzTheme="dark" nzMode="inline">
+      <li nz-menu-item nzMatchRouter routerLink="/dashboard">
+        <i nz-icon nzType="video-camera"></i>
+        <span>Ordenes de Compra</span>
+      </li>
+      <li nz-submenu nzTitle="Categorias" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="/categories/list">
+            Listado
+          </li>
+          <li nz-menu-item nzMatchRouter routerLink="/categories/new">
+            Registro
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Dishes" nzIcon="user">
+        <ul>
+          <li nz-menu-item nzMatchRouter routerLink="/dishes/list">Listado</li>
+          <li nz-menu-item nzMatchRouter routerLink="/dishes/new">Registro</li>
+        </ul>
+      </li>
+      <li nz-menu-item nzMatchRouter (click)="logout()">
+        <i nz-icon nzType="video-camera"></i>
+        <span>Cerrar Sesion</span>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+    <nz-footer
+      >Ant Design ©2020 Implement By Angular - [Kelvin Carrion
+      Alfaro]</nz-footer
+    >
+  </nz-layout>
+</nz-layout>

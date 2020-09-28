@@ -1,0 +1,22 @@
+<nz-spin [nzSpinning]="loading">
+  <nz-table #basicTable [nzData]="listOrders" #headerTable [nzPageSize]="5">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Total</th>
+        <th>Fecha</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index">
+        <td>{{ listOrders.length - data.pos }}</td>
+        <td>{{ data?.client?.nombres }} {{ data?.client?.apellidos }}</td>
+        <td>S/ {{ data?.price_total | number: ".2-2" }}</td>
+        <td>
+          {{ data?.date | date: "LLL-yyyy HH:mm":"UTC-05":"es-PE" | uppercase }}
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-spin>

@@ -1,0 +1,46 @@
+<nz-spin [nzSpinning]="loading">
+  <h1>Lista de Platos</h1>
+  <nz-list nzGrid>
+    <div nz-row [nzGutter]="16">
+      <div
+        nz-col
+        [nzXXl]="6"
+        [nzXl]="6"
+        [nzLg]="6"
+        [nzMd]="6"
+        [nzSm]="12"
+        [nzXs]="24"
+        *ngFor="let item of listDishes"
+      >
+        <nz-list-item>
+          <nz-card
+            [nzCover]="coverTemplate"
+            [nzActions]="[actionDelete, actionEdit]"
+          >
+            <nz-card-meta
+              [nzTitle]="item.name | upperCamelCase: true"
+              [nzDescription]="coverPrice"
+            ></nz-card-meta>
+          </nz-card>
+          <ng-template #coverPrice>
+            <p>
+              {{ item?.description | slice: 0:100 }}
+              {{ item?.description.length > 100 ? "..." : "" }}
+            </p>
+            <p><strong>Precio:</strong> S/ {{ item?.price | number: ".2" }}</p>
+          </ng-template>
+
+          <ng-template #coverTemplate>
+            <img alt="example" class="avatar" [src]="item?.avatar" />
+          </ng-template>
+          <ng-template #actionDelete>
+            <a (click)="deleteDish(item?._id)">Eliminar</a>
+          </ng-template>
+          <ng-template #actionEdit>
+            <a [routerLink]="['/dishes', item?._id, 'edit']">Editar</a>
+          </ng-template>
+        </nz-list-item>
+      </div>
+    </div>
+  </nz-list>
+</nz-spin>
